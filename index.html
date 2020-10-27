@@ -57,13 +57,13 @@
                     <a href="#" class="btn btn-lg btn-secondary" v-model="btnCheck" @click="change()">{{ btnCheck?'沒存貨了QQ': '搶先訂購' }}</a>
                 </p>
             </div>
-            <div v-else>
+            <div v-else class="hidden" :class="{show:detectDate()}">
                 <div v-if="lock">
                     <p>輸入生日日期以解鎖功能~~</p>
                     <input type="date" v-model="date"></input>
                     <button class="btn btn-lg btn-secondary" @click="unlock()">解鎖</button>
                 </div>
-                <div v-else>
+                <div v-else class="hidden" :class="{show:!lock}">
                     <p>請用手機掃描此QRCode(無毒請放心(O))</p>
                     <img src="images/qr-code.png" width="400"></img>
                 </div>
