@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
     <title>In Our World</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/cover/">
@@ -45,13 +48,26 @@
         </header>
 
         <main role="main" class="inner cover">
-            <h1 class="cover-heading">Order your Boyfriend~~</h1>
-            <p class="lead">
-                {{ !btnCheck?'商品庫存僅剩1件，要買要快，欲購從速(?':'商品庫存僅剩0件，請洽系統管理員(?'}}
-            </p>
-            <p class="lead">
-                <a href="#" class="btn btn-lg btn-secondary" v-model="btnCheck" @click="change()">{{ btnCheck?'沒存貨了QQ': '搶先訂購' }}</a>
-            </p>
+            <div v-if="!detectDate()">
+                <h1 class="cover-heading">Order your Boyfriend~~</h1>
+                <p class="lead">
+                    {{ !btnCheck?'商品庫存僅剩1件，要買要快，欲購從速(?':'商品庫存僅剩0件，請洽系統管理員(?'}}
+                </p>
+                <p class="lead">
+                    <a href="#" class="btn btn-lg btn-secondary" v-model="btnCheck" @click="change()">{{ btnCheck?'沒存貨了QQ': '搶先訂購' }}</a>
+                </p>
+            </div>
+            <div v-else>
+                <div v-if="lock">
+                    <p>輸入生日日期以解鎖功能~~</p>
+                    <input type="date" v-model="date"></input>
+                    <button class="btn btn-lg btn-secondary" @click="unlock()">解鎖</button>
+                </div>
+                <div v-else>
+                    <p>請用手機掃描此QRCode(無毒請放心(O))</p>
+                    <img src="images/qr-code.png" width="400"></img>
+                </div>
+            </div>
         </main>
 
         <footer class="mastfoot mt-auto">
